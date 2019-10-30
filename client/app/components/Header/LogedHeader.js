@@ -75,7 +75,8 @@ class LogedHeader extends Component {
   }
   render() {
 
-    return (
+    return (<div className="hedrsd">
+      
       <div className="home-header-loged">
         <img onClick={this.home} id='logo' src="https://i.imgur.com/s1HADMW.png" alt="رمز الموقع" />
         <input className="search" type="text" placeholder="بــــحـــث" />
@@ -99,7 +100,8 @@ class LogedHeader extends Component {
 
       </div>
 
-    );
+   
+    </div> );
   }
 }
 

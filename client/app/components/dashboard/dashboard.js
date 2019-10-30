@@ -39,32 +39,80 @@ class Dashboard extends Component {
  return(
      <div>
        <LogedHeader logout={this.logout}/>
-          {this.state.users.length<=0?   <div>isLoading...</div> :   <div>
+          {this.state.users.length<=0?   <div>isLoading...</div> :  
+this.state.users.map(el=>{return(
+  <div  className="dashboard-czs">
 
-<div className="dashdash">
-{this.state.users.map(el=>{
-    return(
-        <div className="dashboard-content">
-          <img src={el.ProfileImg} alt="" id="profile-pec"/>
-        <p>{el.firstName} {el.lastName}</p>
-    
-
-        </div>
-    )
-})}
-<div className="dashboard-content">
+  <div className="dashbaad">
+  <div className="dashdash">
   
-<p>اضف منتج جديد</p>
-<p>مشترياتك</p>
-<p>تصفح المنتجات</p>
-<p>الإعدادات</p>
-</div>
-</div>
-
-
-
-
-  </div> }
+   
+          <div className="dashboard-content">
+            <img src={el.ProfileImg} alt="" id="profile-pec"/>
+          <p>{el.firstName} {el.lastName}</p>
+      
+  
+          </div>
+  
+  <div className="dashboard-content">
+    
+  <p>اضف منتج جديد</p>
+  <p>مشترياتك</p>
+  <p>تصفح المنتجات</p>
+  <p>الإعدادات</p>
+  </div>
+  </div>
+  
+  </div>
+  <div className="dash-partie2">
+  <p className="edit-info">تعديل المعلومات الشخصية</p>
+  <div className="up-Img">
+  <img src={el.ProfileImg} className="wrap" alt="" id="profile-pec"/>
+  <div class="upload-btn-wrapper">
+    <button class="btn">Upload a file</button>
+    <input type="file" name="myfile" />
+  </div>
+  
+  </div>
+  <p className="account-info">معلومات الحساب</p>
+  <div className="acoutn">
+   
+    <div className="inputs">
+      <input placeholder={el.firstName} type="text"/>
+      <input placeholder={el.lastName} type="text"/>
+      <input placeholder={el.email}  type="email"/>
+      <input placeholder={el.phone}  type="Number"/>
+  
+    </div>
+    <div className="labels">
+      <label htmlFor="firstname">الإسم</label>
+      <label htmlFor="lastname">اللقب</label>
+      <label htmlFor="email">البريد الإلكتروني</label>
+      <label htmlFor="phone">الهاتف</label>
+  
+    </div>
+  </div>
+  <p>تغيير كلمة السر</p>
+  <div  className="acoutn">
+  
+  <div className="inputs">
+  <input type="text" className="passwords"/>
+  <input type="text" className="passwords"/>
+  </div>
+  <div  className="labels">
+      <label htmlFor="currpassword">كلمة السر الحالية</label>
+      <label htmlFor="newpassword">كلمة السر الجديدة</label>
+     
+  
+    </div>
+  </div>
+  <span>حفظ التغييرات</span>
+  </div>
+  </div>
+  
+)})
+ }
+  
      </div>
  )
     
