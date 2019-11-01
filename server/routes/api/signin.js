@@ -8,7 +8,7 @@ const storage = multer.diskStorage({
     cb(null, './uploads');
   },
   filename: function(req, file, cb) {
-    cb(null,file.originalname);
+    cb(null,file.originalname+file.originalname+Math.floor(Math.random()*1000));
   }
 });
 
@@ -267,12 +267,24 @@ module.exports = (app) => {
       req.params.id,
       {      ProfileImg:"http://localhost:8080/"+req.file.path.substr(0,7)+"/"+req.file.path.substr(8,req.file.path.length)}, 
       { new: true }, (err, ProfileImg) => {
-        if (err) return res.status(500).send(err);
+        if (err) return res.send(err);
         return res.send(ProfileImg);
       }
     )
   
   })
+  app.put("/api/users/profile/:id",  (req, res, next) => {
+  
+    User.findByIdAndUpdate(
+   req.params.id,
+   {...req.body}, 
+   { new: true }, (err, newq) => {
+     if (err) return res.send(err);
+     return res.send(newq);
+   }
+ )
+
+})
 
 
    

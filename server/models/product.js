@@ -5,37 +5,36 @@ const ProductSchema = new mongoose.Schema({
     type: String,
     default: ''
   },
- ProductImg:{
+
+  ProductDescription: {
     type: String,
     default: ''
   },
-  firstName: {
+  qte: {
     type: String,
     default: ''
   },
-  lastName: {
+  category: {
     type: String,
     default: ''
   },
-  userName: {
+  photo:{
     type: String,
     default: ''
   },
-  phone: {
-    type: Number,
-    default: null
-  },
-  password: {
+  prix:{
     type: String,
     default: ''
   },
-  isDeleted: {
-    type: Boolean,
-    default: false
+
+  ProductName:{
+    type: String,
+    default: ''
   },
-  signUpDate: {
-    type: Date,
-    default: Date.now()
+  
+  AddDate: {
+    type: String,
+    default: Date()
   }
 });
 

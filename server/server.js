@@ -51,6 +51,8 @@ if (isDev) {
     }
   }));
   app.use('/uploads', express.static('uploads'));
+  app.use('/products', express.static('Products'));
+
   app.use(webpackHotMiddleware(compiler));
   app.use(express.static(path.resolve(__dirname, '../dist')));
 } else {

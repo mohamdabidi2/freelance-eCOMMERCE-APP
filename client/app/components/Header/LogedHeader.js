@@ -15,6 +15,8 @@ class LogedHeader extends Component {
       token: ""
     }
     this.logout = this.logout.bind(this);
+    this.Addproduct = this.Addproduct.bind(this);
+
     this.dash = this.dash.bind(this);
     this.orders = this.orders.bind(this);
     this.home = this.home.bind(this);
@@ -29,10 +31,13 @@ class LogedHeader extends Component {
   home() {
     this.props.history.push("/home")
   }
+  Addproduct() {
+    this.props.history.push('/AddProduct')}
   logout() {
     this.setState({
       isLoading: true,
     });
+    
     const obj = getFromStorage('the_main_app');
     if (obj && obj.token) {
       const { token } = obj;
@@ -80,12 +85,12 @@ class LogedHeader extends Component {
       <div className="home-header-loged">
         <img onClick={this.home} id='logo' src="https://i.imgur.com/s1HADMW.png" alt="رمز الموقع" />
         <input className="search" type="text" placeholder="بــــحـــث" />
-        <p className="Login-btn add-btn">اضف إعلان جديد</p>
+        <p className="Login-btn add-btn" onClick={this.Addproduct}>اضف إعلان جديد</p>
         <ul className="compte-ee"><li className="likedcompte" ><div>
 
           {this.state.users.map(el => {
             return (
-              <img id="profil-image" src={el.ProfileImg} alt="" />
+              <img key={Math.random()} id="profil-image" src={el.ProfileImg} alt="" />
             )
           })}
 

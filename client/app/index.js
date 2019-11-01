@@ -20,6 +20,7 @@ import Home from './components/Home/Home';
 import Orders from './components/orders/order';
 import Dashboard from './components/dashboard/dashboard';
 import LogedHome from './components/Home/LogedHome';
+import AddProduct from './components/dashboard/addProduct';
 
 render((
   <Router>
@@ -30,6 +31,8 @@ render((
         <Route exact path="/home" component={LogedHome} />
       
         <Route exact path="/Dashboard" component={Dashboard}/>
+        <Route exact path="/AddProduct" component={AddProduct}/>
+
 
         <Route path="/register" component={Register } />
         <Route exact path="/account" component={SignIn} />
