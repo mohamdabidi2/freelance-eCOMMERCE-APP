@@ -1,40 +1,32 @@
 const mongoose = require('mongoose');
 
-const ProductSchema = new mongoose.Schema({
+const PostSchema = new mongoose.Schema({
   UserId: {
     type: String,
     default: ''
   },
 
-  ProductDescription: {
+  Likes: {
+    type: String,
+    default: '0'
+  },
+  comments: {
+    type: Array,
+    default: []
+  },
+  PostText: {
     type: String,
     default: ''
   },
-  UserPhone: {
+  PostUserName: {
     type: String,
     default: ''
   },
-  qte: {
-    type: String,
-    default: ''
-  },
-  category: {
-    type: String,
-    default: ''
-  },
-  photo:{
+  userphoto:{
     type: String,
     default: 'https://i.imgur.com/B4lpk1h.png'
   },
-  prix:{
-    type: String,
-    default: ''
-  },
 
-  ProductName:{
-    type: String,
-    default: ''
-  },
   
   AddDate: {
     type: String,
@@ -42,4 +34,4 @@ const ProductSchema = new mongoose.Schema({
   }
 });
 
-module.exports = mongoose.model('Product', ProductSchema);
+module.exports = mongoose.model('Post', PostSchema);

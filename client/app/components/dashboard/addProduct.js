@@ -22,16 +22,15 @@ class AddProduct extends Component {
       email: "",
       password: "",
       confirmPassword: "",
-      file:{}
+      file: {}
     }
 
-   this.setImage = this.setImage.bind(this);
-   this.save = this.save.bind(this);
+    this.save = this.save.bind(this);
 
 
 
   }
-  
+
   componentDidMount() {
     const obj = getFromStorage('the_main_app');
     if (obj && obj.email) {
@@ -48,74 +47,76 @@ class AddProduct extends Component {
   }
 
 
-  save(){
-    let firstName=this.refs.firstname.value!=""?this.refs.firstname.value:this.refs.firstname.placeholder
-    let lastName=this.refs.lastname.value!=""?this.refs.lastname.value:this.refs.lastname.placeholder
-    let phone=this.refs.phone.value>null?this.refs.phone.value:this.refs.phone.placeholder
-    let email=this.refs.email.value!=""?this.refs.email.value:this.refs.email.placeholder
-    let password=this.refs.pass.value!=""?this.refs.pass.value:this.refs.pass.placeholder
-    let confirmPassword=this.refs.confpass.value!=""?this.refs.confpass.value:this.refs.confpass.placeholder
-    let newuser={firstName:firstName,lastName:lastName,phone:phone,email:email,password:confirmPassword}
-console.log({firstName:firstName,lastName:lastName,phone:phone,email:email,password:confirmPassword})
-Axios.put("/api/users/profile/"+this.state.users[0]._id,newuser).then(res=>console.log(res))
-  }
-  setImage(e){
-   const fd=new FormData()
-  
-   fd.append("photos",e.target.files)
+  save() {
+    let UserId = this.state.users[0]._id
+    let ProductDescription = this.refs.ProductDescription.value
+    let qte = this.refs.qte.value
+    let prix = this.refs.prix.value
+    let UserPhone = this.state.users[0].phone
+    let category = this.refs.category.value ? this.refs.category.value : "ALL"
 
-Axios.put("/api/photos/5dba7f3b72d6ca26c8499816",fd).then(res=>console.log(res)) }
- 
+    let ProductName = this.refs.ProductName.value
+    let newuser = { UserId: UserId, ProductDescription: ProductDescription, qte: qte, prix: prix, UserPhone: UserPhone, category: category, ProductName: ProductName }
+
+
+    Axios.post("/api/products/add", newuser).then(res => {
+      console.log(res.data)
+    })
+
+  }
+
+
 
 
 
   render() {
 
     return (
-        <div>
-          <LogedHeader logout={this.logout} />
-          {this.state.users.length <= 0 ? <div>isLoading...</div> :
-            this.state.users.map(el => {
-              return (
-                <div key={Math.random()} className="dashboard-czs">
-  
-                  <div className="dashbaad">
-                    <div className="dashdash">
-  
-  
-                      <div className="dashboard-content">
-                        <img src={el.ProfileImg} alt="" id="profile-pec" />
-                        <p>{el.firstName} {el.lastName}</p>
-  
-  
-                      </div>
-  
-                      <div className="dashboard-content">
-  
-                        <p>اضف منتج جديد</p>
-                        <p>مشترياتك</p>
-                        <p>تصفح المنتجات</p>
-                        <p>الإعدادات</p>
-                      </div>
+      <div>
+        <LogedHeader logout={this.logout} />
+        {this.state.users.length <= 0 ? <div>isLoading...</div> :
+          this.state.users.map(el => {
+            return (
+              <div key={Math.random()} className="dashboard-czs">
+
+                <div className="dashbaad">
+                  <div className="dashdash">
+
+
+                    <div className="dashboard-content">
+                      <img src={el.ProfileImg} alt="" id="profile-pec" />
+                      <p>{el.firstName} {el.lastName}</p>
+
+
                     </div>
-  
+
+                    <div className="dashboard-content">
+
+
+                    <p onClick={()=>{this.props.history.push("/products")}}>منتجاتك</p>
+                                            <p onClick={()=>{this.props.history.push("/home")}}>تصفح المنتجات</p>
+                                            <p>النصائح و الإرشادات</p>
+                                            <p onClick={()=>{this.props.history.push("/Dashboard")}}>الإعدادات</p>
+                    </div>
                   </div>
-              <div className="dash-partie2">
+
+                </div>
+                <div className="dash-partie2">
                   <div></div>
-                  <hr/>
+                  <hr />
                   <p>معلومات حول المنتج</p>
                   <div className="acoutn">
 
                     <div className="inputs">
-                      <input placeholder={el.firstName} ref="ProductName"  type="text" />
+                      <input ref="ProductName" type="text" />
                       <select name="category" id="category" ref="category">
-                          <option value="category1">category1</option>
-                          <option value="category2">category2</option>
-                          <option value="category3">category3</option>
+                        <option value="category1">category1</option>
+                        <option value="category2">category2</option>
+                        <option value="category3">category3</option>
                       </select>
-                      <input placeholder={el.email} ref="description"  type="text" />
-                      <input placeholder={el.phone} ref="price"  type="text" />
-                      <input placeholder={el.phone} ref="qtn"  type="Number" />
+                      <input ref="ProductDescription" type="text" />
+                      <input ref="prix" type="text" />
+                      <input ref="qte" type="Number" />
 
 
                     </div>
@@ -125,25 +126,22 @@ Axios.put("/api/photos/5dba7f3b72d6ca26c8499816",fd).then(res=>console.log(res))
                       <label htmlFor="description">وصف المنتج</label>
                       <label htmlFor="price">ثمن المنتج</label>
                       <label htmlFor="qtn">الكمية المتوفرة</label>
-                    
+
 
                     </div>
                   </div>
-                  <p>اضف صورة للمنتج</p>
-                  <div>
-                      <input type="file" name="photos" onChange={this.setImage} className="file" multiple/>
-                      <img src={el.ProfileImg} alt=""/>
-                  </div>
-              </div>
+
+                  <p onClick={this.save}>اضافة منتج جديد</p>
                 </div>
-  
-              )
-            })
-          }
-  
-        </div>
-      )
-  
+              </div>
+
+            )
+          })
+        }
+
+      </div>
+    )
+
 
 
 

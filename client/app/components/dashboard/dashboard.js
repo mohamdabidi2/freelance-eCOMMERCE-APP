@@ -22,16 +22,16 @@ class Dashboard extends Component {
       email: "",
       password: "",
       confirmPassword: "",
-      file:{}
+      file: {}
     }
 
-   this.setImage = this.setImage.bind(this);
-   this.save = this.save.bind(this);
+    this.setImage = this.setImage.bind(this);
+    this.save = this.save.bind(this);
 
 
 
   }
-  
+
   componentDidMount() {
     const obj = getFromStorage('the_main_app');
     if (obj && obj.email) {
@@ -48,23 +48,24 @@ class Dashboard extends Component {
   }
 
 
-  save(){
-    let firstName=this.refs.firstname.value!=""?this.refs.firstname.value:this.refs.firstname.placeholder
-    let lastName=this.refs.lastname.value!=""?this.refs.lastname.value:this.refs.lastname.placeholder
-    let phone=this.refs.phone.value>null?this.refs.phone.value:this.refs.phone.placeholder
-    let email=this.refs.email.value!=""?this.refs.email.value:this.refs.email.placeholder
-    let password=this.refs.pass.value!=""?this.refs.pass.value:this.refs.pass.placeholder
-    let confirmPassword=this.refs.confpass.value!=""?this.refs.confpass.value:this.refs.confpass.placeholder
-    let newuser={firstName:firstName,lastName:lastName,phone:phone,email:email,password:confirmPassword}
-console.log({firstName:firstName,lastName:lastName,phone:phone,email:email,password:confirmPassword})
-Axios.put("/api/users/profile/"+this.state.users[0]._id,newuser).then(res=>console.log(res))
+  save() {
+    let firstName = this.refs.firstname.value != "" ? this.refs.firstname.value : this.refs.firstname.placeholder
+    let lastName = this.refs.lastname.value != "" ? this.refs.lastname.value : this.refs.lastname.placeholder
+    let phone = this.refs.phone.value > null ? this.refs.phone.value : this.refs.phone.placeholder
+    let email = this.refs.email.value != "" ? this.refs.email.value : this.refs.email.placeholder
+    let password = this.refs.pass.value != "" ? this.refs.pass.value : this.refs.pass.placeholder
+    let confirmPassword = this.refs.confpass.value != "" ? this.refs.confpass.value : this.refs.confpass.placeholder
+    let newuser = { firstName: firstName, lastName: lastName, phone: phone, email: email, password: confirmPassword }
+    console.log({ firstName: firstName, lastName: lastName, phone: phone, email: email, password: confirmPassword })
+    Axios.put("/api/users/profile/" + this.state.users[0]._id, newuser).then(res => console.log(res))
   }
-  setImage(e){
-   const fd=new FormData()
-   fd.append("ProfileImg",e.target.files[0],e.target.files[0].name)
+  setImage(e) {
+    const fd = new FormData()
+    fd.append("ProfileImg", e.target.files[0], e.target.files[0].name)
 
-Axios.put("/api/profile/users/"+this.state.users[0]._id,fd).then(res=>console.log(res)) }
- 
+    Axios.put("/api/profile/users/" + this.state.users[0]._id, fd).then(res => console.log(res))
+  }
+
 
 
 
@@ -91,10 +92,11 @@ Axios.put("/api/profile/users/"+this.state.users[0]._id,fd).then(res=>console.lo
 
                     <div className="dashboard-content">
 
-                      <p>اضف منتج جديد</p>
-                      <p>مشترياتك</p>
-                      <p>تصفح المنتجات</p>
-                      <p>الإعدادات</p>
+
+                    <p onClick={()=>{this.props.history.push("/products")}}>منتجاتك</p>
+                                            <p onClick={()=>{this.props.history.push("/home")}}>تصفح المنتجات</p>
+                                            <p>النصائح و الإرشادات</p>
+                                            <p onClick={()=>{this.props.history.push("/Dashboard")}}>الإعدادات</p>
                     </div>
                   </div>
 
@@ -113,10 +115,10 @@ Axios.put("/api/profile/users/"+this.state.users[0]._id,fd).then(res=>console.lo
                   <div className="acoutn">
 
                     <div className="inputs">
-                      <input placeholder={el.firstName} ref="firstname"  type="text" />
-                      <input placeholder={el.lastName} ref="lastname"  type="text" />
-                      <input placeholder={el.email} ref="email"  type="email" />
-                      <input placeholder={el.phone} ref="phone"  type="Number" />
+                      <input placeholder={el.firstName} ref="firstname" type="text" />
+                      <input placeholder={el.lastName} ref="lastname" type="text" />
+                      <input placeholder={el.email} ref="email" type="email" />
+                      <input placeholder={el.phone} ref="phone" type="Number" />
 
                     </div>
                     <div className="labels">
@@ -132,7 +134,7 @@ Axios.put("/api/profile/users/"+this.state.users[0]._id,fd).then(res=>console.lo
 
                     <div className="inputs">
                       <input ref='pass' onChange={this.setPassword} type="password" className="passwords" />
-                      <input ref="confpass"type="password" className="passwords" onChange={this.setConfirm}/>
+                      <input ref="confpass" type="password" className="passwords" onChange={this.setConfirm} />
                     </div>
                     <div className="labels">
                       <label htmlFor="currpassword">كلمة السر الحالية</label>

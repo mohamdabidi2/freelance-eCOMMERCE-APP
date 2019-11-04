@@ -33,16 +33,17 @@ const storage = multer.diskStorage({
 
 
     // create product
-app.post("/api/products/add",upload.single("photos"),(req,res,next)=>{
+app.post("/api/products/add",(req,res,next)=>{
         const { body } = req;
-    const {ProductName,UserId,ProductDescription,qte,category,prix} = body;
+       console.log(body)
+    const {ProductName,UserId,phone,ProductDescription,qte,category,prix} = body;
     const product=new Product({ ProductName:ProductName,
     UserId:UserId,
     ProductDescription:ProductDescription,
     qte:qte,
     prix:prix,
-    photo:"http://localhost:8080/"+req.file.path.substr(0,8)+"/"+req.file.path.substr(9,req.file.path.length),
-    category:category,})
+    category:category,
+  phone:phone})
 product.save((err,product)=>{
   if(err){
     return   console.error(err);
@@ -51,6 +52,22 @@ product.save((err,product)=>{
 })
 
     
+
+})
+
+
+
+
+app.put("/api/products/product/:id", upload.single('photos'), (req, res, next) => {
+  
+  Product.findByIdAndUpdate(
+ req.params.id,
+ {      photo:"http://localhost:8080/"+req.file.path.substr(0,8)+"/"+req.file.path.substr(9,req.file.path.length)}, 
+ { new: true }, (err, ProfileImg) => {
+   if (err) return res.send(err);
+   return res.send(ProfileImg);
+ }
+)
 
 })
 //get all products
