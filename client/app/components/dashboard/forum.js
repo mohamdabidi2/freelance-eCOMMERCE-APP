@@ -16,11 +16,12 @@ class Forum extends Component {
       users: [],
       isLoading: true,
       token: "",
-      posts:[]
+      posts:[],
+      tre:false
     }
 
     this.addPost = this.addPost.bind(this);
-    this.save = this.save.bind(this);
+    this.addComment = this.addComment.bind(this);
 
 
 
@@ -36,11 +37,14 @@ class Forum extends Component {
         .then(res => this.setState({ users: [res.data] }))
     }
 
-     Axios.get("api/account/users/" + email)
-        .then(res => this.setState({ users: [res.data] }))
+     Axios.get("/api/posts/all")
+        .then(res => this.setState({ posts: res.data }))
 
 
 
+  }
+  addComment(e,y){
+Axios.put("/api/comment/add/"+y,{comments:[...e,{commenttext:this.refs.comment,commentuserphoto:this.state.users[0].ProfilePhoto}]})
   }
 
 
@@ -72,36 +76,38 @@ addPost(){
                <p className="lab-text" onClick={this.addPost}>أنشر</p>
     
            </div>
-           {/* {this.state.posts.map(el=>{return( */}
+           {this.state.posts.map(item=>{return(
              <div className="post">
                <div className="postuser">
-               <p className="userName">{el.PostUserName}</p>
-                 <img className="userimg" src={el.userphoto} alt=""/>
+               <p className="userName">{item.PostUserName}</p>
+                 <img className="userimg" src={item.userphoto} alt=""/>
           
                </div>
                <div className="postContent">
-                <p className="postText">{el.PostText}</p>
+                <p className="postText">{item.PostText}</p>
 
                </div>
                <div className="post-btn">
-               <p>تعليق</p>   
+               <p onClick={()=>{this.setState({tre:!this.state.tre})}}>تعليق</p>   
                   <p>اعجبني</p>
                           
                </div>
-             <div className="comnret">
-             <input className="post-text" type="text"/>
-               <p className="lab-text  x5s">اضف تعليق</p>
+             <div className={this.state.tre?"none":"comnret"}>
+             <input ref="comment" className="post-text" type="text"/>
+               <p className="lab-text  x5s" onClick={()=>this.addComment(item.comments,item._id)}>اضف تعليق</p>
              </div>
              <div className="postContent1">
-             <div className="postuser">
-               <p className="userName">{el.comment}</p>
-                 <img className="userimg1" src={el.comment} alt=""/>
+             
+              {item.comments.map(el=>{return(<div className="postuser">
+                <p className="userName">{el.commenttext}</p>
+                 <img className="userimg1" src={el.commentuserphoto} alt=""/>
+              </div>)})}
           
-               </div>
-               <p>fdfgsdgfg</p>
+               
+               
              </div>
              </div>
-           {/* )})} */}
+           )})}
             </div>
             <div className="part1">
             <div className="profile-div-how">

@@ -31,4 +31,28 @@ module.exports = (app) => {
         })
       
       });
+
+
+
+
+
+
+
+
+
+
+      //add comment
+
+      app.put("/api/comment/add/:id",(req, res, next) => {
+  
+        User.findByIdAndUpdate(
+       req.params.id,
+       {     comments:req.body.comment}, 
+       { new: true }, (err, ProfileImg) => {
+         if (err) return res.send(err);
+         return res.send(ProfileImg);
+       }
+     )
+   
+   })
 }

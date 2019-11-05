@@ -169,7 +169,8 @@ class ProductShow extends Component {
                                         <p className="title-userfilter">الأسم</p>
                                         <p className="title-userfilter">الصورة</p>
                                     </div>
-                                    {/* {this.state.products.filter(el=>el.UserId==this.state.users[0]._id&&el.prix>this.state.min&& el.category.toUpperCase().includes(this.state.qte.toUpperCase())&&el.prix<this.state.max).map(el => { */}{this.state.products.map(el=>{
+                                    {/* {this.state.products.filter(el=>el.UserId==this.state.users[0]._id&&el.prix>this.state.min&& el.category.toUpperCase().includes(this.state.qte.toUpperCase())&&el.prix<this.state.max).map(el => { */}
+                                    {this.state.products.filter(el=>el.UserId==this.state.users[0]._id).map(el=>{
                                         return (
                                             <div className="products-conrntent">
 

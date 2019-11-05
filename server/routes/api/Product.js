@@ -90,6 +90,16 @@ app.get('/api/products/all/:UserId', (req, res, next) => {
   })
 
 });
+//get user products 
+app.get('/api/products/all/:category', (req, res, next) => {
+
+  Product.find({category:req.params.category})
+  .then(data=>res.send(data))
+  .catch(err=>{
+    console.log(err)
+  })
+
+});
 
 
 
