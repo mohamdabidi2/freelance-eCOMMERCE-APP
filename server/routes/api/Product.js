@@ -90,6 +90,18 @@ app.get('/api/products/all/:UserId', (req, res, next) => {
   })
 
 });
+
+
+//get id products 
+app.get('/api/products/all/:id', (req, res, next) => {
+
+  Product.find({_id:req.params.id})
+  .then(data=>res.send(data))
+  .catch(err=>{
+    console.log(err)
+  })
+
+});
 //get user products 
 app.get('/api/products/all/:category', (req, res, next) => {
 

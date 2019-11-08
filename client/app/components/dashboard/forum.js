@@ -43,9 +43,8 @@ class Forum extends Component {
 
 
   }
-  addComment(e,y){
-Axios.put("/api/comment/add/"+y,{comments:[...e,{commenttext:this.refs.comment,commentuserphoto:this.state.users[0].ProfilePhoto}]})
-  }
+  addComment(e){
+this.props.history.push("/comment"+e)  }
 
 
   save() {
@@ -88,14 +87,12 @@ addPost(){
 
                </div>
                <div className="post-btn">
-               <p onClick={()=>{this.setState({tre:!this.state.tre})}}>تعليق</p>   
+               <p onClick={()=>this.addComment(item._id)}>تعليق</p>   
                   <p>اعجبني</p>
                           
                </div>
-             <div className={this.state.tre?"none":"comnret"}>
-             <input ref="comment" className="post-text" type="text"/>
-               <p className="lab-text  x5s" onClick={()=>this.addComment(item.comments,item._id)}>اضف تعليق</p>
-             </div>
+          
+      
              <div className="postContent1">
              
               {item.comments.map(el=>{return(<div className="postuser">

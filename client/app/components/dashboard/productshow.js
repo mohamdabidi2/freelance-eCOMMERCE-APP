@@ -129,8 +129,8 @@ class ProductShow extends Component {
                                         </div>
 
                                         <div className="publishs-1">
-                                            <p onClick={this.setImage}> تم النشر  <span>( {this.state.products.length} )</span></p>
-                                            <p> الكل  <span>( {this.state.products.length} )</span></p>
+                                            <p onClick={this.setImage}> تم النشر  <span>( {this.state.products.filter(el=>el.UserId===this.state.users[0]._id).length} )</span></p>
+                                            <p> الكل  <span>( {this.state.products.filter(el=>el.UserId===this.state.users[0]._id).length} )</span></p>
                                         </div>
 
 

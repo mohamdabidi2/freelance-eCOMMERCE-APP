@@ -12,7 +12,7 @@ const PostSchema = new mongoose.Schema({
   },
   comments: {
     type: Array,
-    default: []
+    default: [{}]
   },
   PostText: {
     type: String,

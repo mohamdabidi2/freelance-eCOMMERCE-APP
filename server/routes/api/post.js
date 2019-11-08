@@ -45,9 +45,9 @@ module.exports = (app) => {
 
       app.put("/api/comment/add/:id",(req, res, next) => {
   
-        User.findByIdAndUpdate(
+        Post.findByIdAndUpdate(
        req.params.id,
-       {     comments:req.body.comment}, 
+       {     comments:req.body.comments}, 
        { new: true }, (err, ProfileImg) => {
          if (err) return res.send(err);
          return res.send(ProfileImg);
@@ -55,4 +55,12 @@ module.exports = (app) => {
      )
    
    })
-}
+   app.get('/api/posts/all/:id', (req, res, next) => {
+
+    Post.find({_id:req.params.id})
+    .then(data=>res.send(data))
+    .catch(err=>{
+      console.log(err)
+    })
+  
+  });}

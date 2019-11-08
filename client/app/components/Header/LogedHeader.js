@@ -80,33 +80,33 @@ class LogedHeader extends Component {
   }
   render() {
 
-    return (<div className="hedrsd">
+    return (this.state.users.length<=0?<div>Hello</div>:<div className="hedrsd">
       
-      <div className="home-header-loged">
-        <img onClick={this.home} id='logo' src="https://i.imgur.com/s1HADMW.png" alt="رمز الموقع" />
-        <input className="search" type="text" placeholder="بــــحـــث" />
-        <p className="Login-btn add-btn" onClick={this.Addproduct}>اضف إعلان جديد</p>
-        <ul className="compte-ee"><li className="likedcompte" ><div>
+    <div className="home-header-loged">
+      <img onClick={this.home} id='logo' src="https://i.imgur.com/s1HADMW.png" alt="رمز الموقع" />
+      <input className="search" type="text" placeholder="بــــحـــث" />
+      <p className="Login-btn add-btn" onClick={this.Addproduct}>اضف إعلان جديد</p>
+      <ul className="compte-ee"><li className="likedcompte" ><div>
 
-          {this.state.users.map(el => {
-            return (
-              <img key={Math.random()} id="profil-image" src={el.ProfileImg} alt="" />
-            )
-          })}
-
-        </div>
-          <ul className='drop-menu'>
-            <li onClick={this.dash}>لوحة التحكم</li>
-            <li >الإعدادات</li>
-            <li onClick={()=>{this.props.history.push("/products")}}>منتجاتك</li>
-            <li onClick={this.logout}>تسحيل الخروج</li>
-          </ul></li>
-        </ul>
+        {this.state.users.map(el => {
+          return (
+            <img key={Math.random()} id="profil-image" src={el.ProfileImg} alt="" />
+          )
+        })}
 
       </div>
+        <ul className='drop-menu'>
+          <li onClick={this.dash}>لوحة التحكم</li>
+          <li >الإعدادات</li>
+          <li onClick={()=>{this.props.history.push("/products")}}>منتجاتك</li>
+          <li onClick={this.logout}>تسحيل الخروج</li>
+        </ul></li>
+      </ul>
 
-   
-    </div> );
+    </div>
+
+ 
+  </div> );
   }
 }
 

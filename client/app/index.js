@@ -23,6 +23,13 @@ import LogedHome from './components/Home/LogedHome';
 import AddProduct from './components/dashboard/addProduct';
 import ProductShow from './components/dashboard/productshow';
 import Forum from './components/dashboard/forum';
+import AdminLogin from './components/Admin/AdminsLogin';
+import AdminDashboard from './components/Admin/AdminDashboard';
+import AdminDashboardUser from './components/Admin/adminusersdash';
+import AddAdmin from './components/Admin/addAdmin';
+import FrontPhotos from './components/Admin/Frontphotos';
+import Comantaire from './components/dashboard/commentaire';
+import productsShowRoom from './components/Home/productsShowRoom';
 
 
 render((
@@ -37,6 +44,18 @@ render((
         <Route exact path="/AddProduct" component={AddProduct}/>
         <Route exact path="/products" component={ProductShow}/>
         <Route exact path="/Forum" component={Forum}/>
+        <Route exact path="/AdmnDashS" component={AdminLogin}/>
+        <Route exact path="/dashAdmin:id" component={AdminDashboardUser}/>
+        <Route exact path="/addadmin:id" component={AddAdmin}/>
+        <Route exact path="/addphotoadmin:id" component={FrontPhotos}/>
+        <Route exact path="/comment:id" component={Comantaire}/>
+        <Route exact path="/product=:id" component={productsShowRoom}/>
+
+
+        
+        <Route exact path="/admin:id" component={AdminDashboard}/>
+
+
 
 
       

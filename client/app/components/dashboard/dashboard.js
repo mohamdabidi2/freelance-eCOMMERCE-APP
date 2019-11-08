@@ -96,6 +96,8 @@ class Dashboard extends Component {
                     <p onClick={()=>{this.props.history.push("/products")}}>منتجاتك</p>
                                             <p onClick={()=>{this.props.history.push("/home")}}>تصفح المنتجات</p>
                                             <p>النصائح و الإرشادات</p>
+                                            <p onClick={()=>{this.props.history.push("/Forum")}}>المنتدى</p>
+
                                             <p onClick={()=>{this.props.history.push("/Dashboard")}}>الإعدادات</p>
                     </div>
                   </div>

@@ -285,9 +285,25 @@ module.exports = (app) => {
  )
 
 })
+app.get("/api/users/all",(req,res)=>{
+  User.find({},(err,data)=>{
+    if(err){
+      console.log(err
+        )
+    }
+    else{
+      res.send(data)
+    }
+  })
+})
 
 
-   
+app.delete("/api/users/delete/:id",(req,res)=>{
+  User.findOneAndDelete({_id:req.params.id})
+  .then(data=>res.send("user Was Deleted"))
+  .catch(err=>{
+    console.log(err)})
+  })
 
 
   
