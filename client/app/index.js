@@ -30,6 +30,8 @@ import AddAdmin from './components/Admin/addAdmin';
 import FrontPhotos from './components/Admin/Frontphotos';
 import Comantaire from './components/dashboard/commentaire';
 import productsShowRoom from './components/Home/productsShowRoom';
+import Massanger from './components/Home/messanger';
+import MessangerDashboard from './components/dashboard/messangerDashboard';
 
 
 render((
@@ -50,6 +52,10 @@ render((
         <Route exact path="/addphotoadmin:id" component={FrontPhotos}/>
         <Route exact path="/comment:id" component={Comantaire}/>
         <Route exact path="/product=:id" component={productsShowRoom}/>
+        <Route exact path="/:id messangerUser=:UserId" component={Massanger}/>
+        <Route exact path="/dashboardMessanger=:id" component={MessangerDashboard}/>
+
+
 
 
         

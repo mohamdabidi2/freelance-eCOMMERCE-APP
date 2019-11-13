@@ -22,7 +22,7 @@ class AdminLogin extends Component {
             <h1 className="dashboardAdminLogin-title"> &nbsp;&nbsp;&nbsp;&nbsp;Admin Login Dashboard</h1>
             <label htmlFor="">Email :   &nbsp;&nbsp;&nbsp;&nbsp; <input ref="adminemail" className="dashboardAdminLogin-email" type="text"/> </label>
             
-            <label htmlFor="">password : <input ref="adminpassword" className="dashboardAdminLogin-password" type="text"/></label>
+            <label htmlFor="">password : <input ref="adminpassword" className="dashboardAdminLogin-password" type="password"/></label>
             
             <span className="dashboardAdminLogin-loginBTN adda3len" onClick={this.adminLogin}> Login</span>
         </div> );

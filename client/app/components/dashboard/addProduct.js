@@ -113,6 +113,8 @@ class AddProduct extends Component {
                       <input ref="ProductName" type="text" />
                       <select name="category" id="category" ref="category">
                         <option value="category1">category1</option>
+                        <option value="category1">category1</option>
+
                         <option value="category2">category2</option>
                         <option value="category3">category3</option>
                       </select>
@@ -133,7 +135,7 @@ class AddProduct extends Component {
                     </div>
                   </div>
 
-                  <p onClick={this.save}>اضافة منتج جديد</p>
+                  <p className="mq" onClick={this.save}>اضافة منتج جديد</p>
                 </div>
               </div>
 

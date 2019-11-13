@@ -97,6 +97,8 @@ class LogedHeader extends Component {
       </div>
         <ul className='drop-menu'>
           <li onClick={this.dash}>لوحة التحكم</li>
+          <li onClick={()=>this.props.history.push("/dashboardMessanger="+this.state.users[0]._id)}>الرسائل</li>
+
           <li >الإعدادات</li>
           <li onClick={()=>{this.props.history.push("/products")}}>منتجاتك</li>
           <li onClick={this.logout}>تسحيل الخروج</li>
