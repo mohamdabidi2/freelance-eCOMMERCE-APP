@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Axios from 'axios';
-class FrontPhotos extends Component {
+class Advices extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -8,11 +8,12 @@ class FrontPhotos extends Component {
             users: [],
             qte:"",
             search:"",
-            photos:[],
             min:0,
             max:100000,
         }
         this.filtercategory = this.filtercategory.bind(this);
+   
+        this.addAdvice = this.addAdvice.bind(this);
 
 
     }
@@ -20,7 +21,6 @@ class FrontPhotos extends Component {
         Axios.get("/api/admin/" + this.props.match.params.id).then(res => this.setState({ currentADmin: res.data }))
         Axios.get("/api/users/all")
         .then(res => this.setState({ users: res.data }))
-        Axios.get("/api/photos/all").then(res => this.setState({ photos: res.data }))
     }
     filtercategory(){
         this.setState({
@@ -30,14 +30,8 @@ class FrontPhotos extends Component {
         
         })
             }
-            deleteImg(e){
-                Axios.delete("/api/photos/delete/"+e).then(res=>console.log(res))
-            }
-            addImage(e){
-                const fd = new FormData()
-                fd.append("img", e.target.files[0], e.target.files[0].name)
-            
-                Axios.post("/api/photos/add", fd).then(res => console.log(res))
+            addAdvice(){
+                Axios.post("/api/advices/add",{title:this.refs.title.value,body:this.refs.body.value}).then(res=>console.log(res))
             }
     render() {
         return (this.state.currentADmin.length <= 0 ? <div>Loading ...</div> : <div>
@@ -61,28 +55,12 @@ class FrontPhotos extends Component {
 
                         </div>
                         <div className="partie2-ashboard-admin">
-                            <div className="dash-partie222">
-                      <div>
-                          <h1>أضف صور جديدة</h1>
-                      <label htmlFor="">  <input onChange={this.addImage.bind(this)} type="file" name="" id=""/></label>
-                          <h1> الصور التي ستضهر</h1>
-                            
-                      {this.state.photos.map(el=>{
-                          return(
-                              <div>
-                                  <img src={el.img} alt=""/><span className="adda3len" onClick={()=>this.deleteImg(el._id)}> remove</span>
-                              </div>
-                          )
-                      })}
-
-                      </div>
-                      
-                    
-         
-
+                            <div className="dash-partie22">
+                           <label htmlFor="">Title    <input ref='title' className="adda3len" type="text"/></label>
+                          <label htmlFor="">body      <textarea ref="body" className="adda3len" name="" id="" cols="30" rows="10"></textarea></label>
+                        <p onClick={this.addAdvice}>Send</p>
+                            </div>
                         </div>
-                        </div>
-
 
 
 
@@ -95,4 +73,4 @@ class FrontPhotos extends Component {
     }
 }
 
-export default FrontPhotos;
+export default Advices;

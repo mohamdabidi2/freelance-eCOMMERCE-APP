@@ -35,6 +35,8 @@ const {firstName,lastName,email,password}=this.refs
 <p className="adda3len" onClick={()=>{this.props.history.push("/admin"+this.props.match.params.id)}}>قائمة المنتوجات</p>
 <p className="adda3len" onClick={()=>{this.props.history.push("/addadmin"+this.props.match.params.id)}}>اضافة ادمن جديد</p>
 <p className="adda3len" onClick={()=>{this.props.history.push("/addphotoadmin"+this.props.match.params.id)}}>اضافة صور الواجهة</p>
+<p className="adda3len" onClick={()=>{this.props.history.push("/advices"+this.props.match.params.id)}}>نصائح و إرشادات</p>
+
 
 </div>
                         <div className="admin-det">

@@ -25,6 +25,8 @@ class Header extends Component {
             <div className="home-header">
             <img onClick={this.home} id='logo' src="https://i.imgur.com/s1HADMW.png" alt="رمز الموقع"/>
                 <input className="search" type="text" placeholder="بــــحـــث"/>
+                <span onClick={()=>this.props.history.push("/account")}>بحث</span>
+
                
                 <p className="register" onClick={this.signup}>تسجيل</p>
                 <p className="register"onClick={this.register}>دخول</p>

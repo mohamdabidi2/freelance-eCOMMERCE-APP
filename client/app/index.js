@@ -32,6 +32,9 @@ import Comantaire from './components/dashboard/commentaire';
 import productsShowRoom from './components/Home/productsShowRoom';
 import Massanger from './components/Home/messanger';
 import MessangerDashboard from './components/dashboard/messangerDashboard';
+import SearchHome from './components/Home/searchhome';
+import Advices from './components/Admin/Advices';
+import ForumAdvices from './components/dashboard/advices';
 
 
 render((
@@ -54,6 +57,12 @@ render((
         <Route exact path="/product=:id" component={productsShowRoom}/>
         <Route exact path="/:id messangerUser=:UserId" component={Massanger}/>
         <Route exact path="/dashboardMessanger=:id" component={MessangerDashboard}/>
+        <Route exact path="/search=:search" component={SearchHome}/>
+        <Route exact path="/advices:id" component={Advices}/>
+        <Route exact path="/adviceme" component={ForumAdvices}/>
+
+
+
 
 
 

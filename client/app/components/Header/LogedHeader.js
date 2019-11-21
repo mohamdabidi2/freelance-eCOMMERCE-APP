@@ -84,7 +84,8 @@ class LogedHeader extends Component {
       
     <div className="home-header-loged">
       <img onClick={this.home} id='logo' src="https://i.imgur.com/s1HADMW.png" alt="رمز الموقع" />
-      <input className="search" type="text" placeholder="بــــحـــث" />
+      <input ref="bahth" className="search" type="text" placeholder="بــــحـــث" />
+      <span onClick={()=>this.props.history.push("/search="+this.refs.bahth.value)}>بحث</span>
       <p className="Login-btn add-btn" onClick={this.Addproduct}>اضف إعلان جديد</p>
       <ul className="compte-ee"><li className="likedcompte" ><div>
 
